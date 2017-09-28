@@ -21,11 +21,10 @@ interface AdapterInterface extends ReadInterface
      * @param string $contents
      * @param Config $config   Config object
      *
-     * @throws FileExistsException If the file already exists.
      * @throws AdapterException    If a low-level, adapter-specific error occurs
      *                             (disk full, permission denied, network error, ...)
      *
-     * @return array
+     * @return array|false false on failure file meta data on success
      */
     public function write($path, $contents, Config $config);
 
@@ -78,6 +77,9 @@ interface AdapterInterface extends ReadInterface
      * @param string $path
      * @param string $newpath
      *
+     * @throws AdapterException    If a low-level, adapter-specific error occurs
+     *                             (disk full, permission denied, network error, ...)
+     *
      * @return bool
      */
     public function rename($path, $newpath);
@@ -127,6 +129,7 @@ interface AdapterInterface extends ReadInterface
      *
      * @throws AdapterException    If a low-level, adapter-specific error occurs
      *                             (disk full, permission denied, network error, ...)
+     *
      * @return array|false
      */
     public function createDir($dirname, Config $config);
